@@ -15,7 +15,7 @@ Make sure your exercise files are in the same folder as this main.py file!
 """
 
 
-def test_ft_exercise(ft_plot_area):
+def test_ft_exercise(ft_plant_age):
     """
     This function tries to run one of your exercises.
 
@@ -24,20 +24,20 @@ def test_ft_exercise(ft_plot_area):
     - Import it
     - Call the function ft_plot_area() inside it
     """
-    print(f"\n=== Testing {ft_plot_area} ===")
+    print(f"\n=== Testing {ft_plant_age} ===")
 
     try:
         # Import your exercise file
         # This is like doing: import ft_plot_area
-        ft_module = __import__(ft_plot_area)
+        ft_module = __import__(ft_plant_age)
 
         # Get the function from your file
         # This is like doing: ft_plot_area.ft_plot_area
-        ft_function = getattr(ft_module, ft_plot_area)
+        ft_function = getattr(ft_module, ft_plant_age)
 
         # Special handling for ft_seed_inventory (Exercise 7)
         # This function takes parameters, unlike the others
-        if ft_plot_area == "ft_seed_inventory":
+        if ft_plant_age == "ft_seed_inventory":
             print("Testing with different seed types and units:\n")
             # Test with packets
             ft_function("tomato", 15, "packets")
