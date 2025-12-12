@@ -3,5 +3,5 @@ def	ft_harvest_total():
 	d2 = int(input("Day 2 harvest: "))
 	d3 = int(input("Day 3 harvest: "))
 	result = d1 + d2 + d3
-	print("Total Harvest: ", result)
+	print("Total Harvest:", result)
 	

@@ -12,7 +12,7 @@ def ft_count_harvest_recursive():
     if (days < int(inp)):
         print("Harvest time!")
         return ;
-    print("Day: ", inp);
+    print("Day", inp);
     n = int(inp)
     inp += 1;
     ft_count_harvest_recursive()
