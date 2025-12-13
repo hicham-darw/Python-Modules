@@ -1,29 +1,11 @@
-from ex1 import Plant
+import sys
+import os
+sys.path.append(os.path.abspath(".."))
 
-# class should be in ex1
-class Plant:
-	def __init__(self, name, height, age):
-		self.name = name
-		self.height = height
-		self.age = age 
-
-	def grow(height):
-			self.height += height
-
-	def age(self, day):
-		return	self.age
-
-	def get_info(self, day):
-		self.age += (day - 1)
-		self.height += (day - 1)
-		print(self.name, ": ", self.height, "cm, ", self.age, " days old", sep="")
-		if (day == 7):
-			print("Growth this week: +", (day - 1), "cm", sep="")
-			tmt = day - 1
+from ex1.ft_garden_data import Plant
 
 if __name__ == "__main__":
 	print("=== Day 1 ===")
 	plant1 = Plant("Rose",25,30)
-	plant1.get_info(1)
 	print("=== Day 7 ===")
 	plant1.get_info(7)
