@@ -5,7 +5,7 @@ class Plant:
 		self.name = name
 		self.height = height
 		self.age = age 
-		print(name, ": ", height,"cm, ", age, " days old", sep = "")
+		print(self.name, ": ", self.height, "cm, ", self.age, " days old", sep="")
 
 if __name__ == "__main__":
 	print("=== Garden Plant Registry ===")
