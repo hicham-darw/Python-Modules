@@ -2,24 +2,26 @@
 
 class Plant:
     def __init__(self, name, height, age):
-        self.p_name = name
-        self.p_height = height
-        self.p_age = age
-        print(self.p_name, ": ", self.p_height, "cm, ", self.p_age, " days old", sep="")
+        self.name = name
+        self.h = height
+        self.a = age
+        print(self.name, ": ", self.h, "cm, ", self.a, " days old", sep="")
 
     def grow(self, day=1):
-        self.p_height += (day - 1)
+        self.h += (day - 1)
 
     def age(self, age=1):
-        self.p_age += age - 1
-    
+        self.a += age - 1
+
     def get_info(self, days=0):
-        print(self.p_name, ": ", self.p_height, "cm, ", self.p_age, " days old", sep="")
+        print(self.name, ": ", self.h, "cm, ", self.a, " days old", sep="")
         if days == 7:
             print("Growth this week: ", "+", (days - 1), "cm", sep="")
+
+
 if __name__ == "__main__":
     print("=== Day 1 ===")
-    plant1 = Plant("Rose",25,30)
+    plant1 = Plant("Rose", 25, 30)
     print("=== Day 7 ===")
     growth = 7
     plant1.age(growth)

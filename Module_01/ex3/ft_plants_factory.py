@@ -1,26 +1,23 @@
+counter_plants = 0
+
+
 class Plant:
-	def __init__(self, name, height, age):
-		self.name = name
-		self.height = height
-		self.age = age 
+    def __init__(self, name, start_height, start_age):
+        global counter_plants
+        self.name = name
+        self.h = start_height
+        self.a = start_age
+        counter_plants += 1
+        created = "Created: " + self.name
+        print(created, " (", self.h, "cm, ", self.a, " days)", sep="")
 
-	def grow(height):
-			self.height += height
-
-	def age(self, day):
-		return	self.age
-
-	def get_info(self, day):
-		self.age += (day - 1)
-		self.height += (day - 1)
-		print(self.name, ": ", self.height, "cm, ", self.age, " days old", sep="")
-		if (day == 7):
-			print("Growth this week: +", (day - 1), "cm", sep="")
-			tmt = day - 1
 
 if __name__ == "__main__":
-	print("=== Day 1 ===")
-	plant1 = Plant("Rose",25,30)
-	plant1.get_info(1)
-	print("=== Day 7 ===")
-	plant1.get_info(7)
+    print("=== Plant Factory Output ===")
+    plant_rose = Plant("Rose", 25, 30)
+    plant_oak = Plant("Oak", 200, 365)
+    plant_cactus = Plant("Cactus", 5, 90)
+    plant_sunflower = Plant("Sunflower", 80, 45)
+    plant_fern = Plant("Fern", 15, 120)
+    print("")
+    print("Total plants created:", counter_plants)
