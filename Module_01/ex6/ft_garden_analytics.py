@@ -25,7 +25,7 @@ class GardenManager:
             self.prize_flowers += 1
 
         if (plant.type == "Tree"):
-            added_tree = "Added " + plant.name + " " + plant.type + " to "
+            added_tree = "Added " + plant.name + " " + plant.type
             print(added_tree, " to ", self.name, "'s garden", sep="")
         else:
             added_flower = "Added " + plant.name + " to "
@@ -55,13 +55,19 @@ class GardenManager:
                 print(fname, plant.height, "cm, ", fcolor, sep="")
             else:
                 pfname = "- " + plant.name + ": "
-                pfcolor = "cm, " + plant.color + "flowers (blooming), "
-                pf = "Prize points "
+                pfcolor = "cm, " + plant.color + " flowers (blooming), "
+                pf = "Prize points"
                 print(pfname, plant.height, pfcolor, pf, plant.prize, sep="")
         print("")
         total_added = self.regular + self.flowering + self.prize_flowers
-        print("Plants added: ", total_added, ", Total growth: ", self.total_growth, "cm", sep="")
-        print("Plant types:", self.regular, "regular,", self.flowering, "flowering,", self.prize_flowers, "prize flowers")
+        p_a = "Plants added: "
+        t_g = ", Total growth: "
+        print(p_a, total_added, t_g, self.total_growth, "cm", sep="")
+        pt = "Plant types:"
+        rg = "regular,"
+        fl = "flowering,"
+        pf = "prize flowers"
+        print(pt, self.regular, rg, self.flowering, fl, self.prize_flowers, pf)
         print("")
 
     @classmethod
@@ -107,6 +113,7 @@ class Tree(Plant):
     def __init__(self, name, type, height):
         super().__init__(name, type, height)
 
+
 class Flower(Plant):
     def __init__(self, name, type, height):
         super().__init__(name, type, height)
@@ -129,15 +136,15 @@ if __name__ == '__main__':
 
     print("=== Garden Management System Demo ===")
     print("")
-    #create a Garden manager
+# create a Garden manager
     alice = GardenManager("Alice")
 
-    #create a plants  
+# create a plants
     oak = Tree("Oak", "Tree", 100)
     rose = FloweringPlant("Rose", "FloweringPlant", 25, "red", 1)
-    sunflower = PrizeFlower("Sunflower", "PrizeFlower", 10, "yellow", 1, 10)
+    sunflower = PrizeFlower("Sunflower", "PrizeFlower", 50, "yellow", 1, 10)
 
-    #add plants to alice garden!
+# add plants to alice garden!
     alice.add_plant(oak)
     alice.add_plant(rose)
     alice.add_plant(sunflower)
@@ -147,10 +154,10 @@ if __name__ == '__main__':
     alice.garden_report()
     bob = GardenManager("Bob")
     bob.score = 92
-    # tmp_manager = GardenManager("tmp")
+# tmp_manager = GardenManager("tmp")
     GardenManager.test_validation()
 
-    #manager = GardenManager("manager")
+# manager = GardenManager("manager")
     GardenManager.garden_scores()
     GardenManager.total_garden_managed()
-    #do somthing for scores
+# do somthing for scores
