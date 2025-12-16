@@ -1,6 +1,7 @@
 class GardenManager:
     height_validation = 0
     managers = []
+
     def __init__(self, name):
         self.plants = []
         self.name = name
@@ -24,10 +25,13 @@ class GardenManager:
             self.prize_flowers += 1
 
         if (plant.type == "Tree"):
-            print("Added ", plant.name, " ", plant.type, " to ", self.name, "'s garden", sep="")
+            added_tree = "Added " + plant.name + " " + plant.type + " to "
+            print(added_tree, " to ", self.name, "'s garden", sep="")
         else:
-            print("Added ", plant.name, " to ", self.name, "'s garden", sep="")
-    #deleting plant or mort
+            added_flower = "Added " + plant.name + " to "
+            print(added_flower, self.name, "'s garden", sep="")
+
+# deleting plant or mort
     def delete_plant(self, plant):
         self.plants.remove(plant)
 
@@ -38,16 +42,22 @@ class GardenManager:
             plant.grow(1)
             self.total_growth += 1
         print("")
-    
+
     def garden_report(self):
         print("Plants in garden:")
         for plant in self.plants:
             if plant.type == "Tree":
-                print("- ", plant.name, " ", plant.type, ": ", plant.height, "cm", sep="")
+                tree = "- " + plant.name + " " + plant.type + ": "
+                print(tree, plant.height, "cm", sep="")
             elif plant.type == "FloweringPlant":
-                print("- ", plant.name, ": ", plant.height, "cm, ", plant.color, " flowers (blooming) ", sep="")
+                fname = "- " + plant.name + ": "
+                fcolor = plant.color + " flowers (blooming) "
+                print(fname, plant.height, "cm, ", fcolor, sep="")
             else:
-                print("- ", plant.name, ": ", plant.height, "cm, ", plant.color, " flowers (blooming), Prize points: ", plant.prize, sep="")
+                pfname = "- " + plant.name + ": "
+                pfcolor = "cm, " + plant.color + "flowers (blooming), "
+                pf = "Prize points "
+                print(pfname, plant.height, pfcolor, pf, plant.prize, sep="")
         print("")
         total_added = self.regular + self.flowering + self.prize_flowers
         print("Plants added: ", total_added, ", Total growth: ", self.total_growth, "cm", sep="")
