@@ -160,4 +160,3 @@ if __name__ == '__main__':
 # manager = GardenManager("manager")
     GardenManager.garden_scores()
     GardenManager.total_garden_managed()
-# do somthing for scores
