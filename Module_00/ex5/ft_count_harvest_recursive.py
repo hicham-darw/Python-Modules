@@ -1,6 +1,6 @@
 days = 0
-
 inp = 0
+
 
 def ft_count_harvest_recursive():
     global inp
@@ -11,8 +11,7 @@ def ft_count_harvest_recursive():
         inp += 1
     if (days < int(inp)):
         print("Harvest time!")
-        return ;
-    print("Day", inp);
-    n = int(inp)
-    inp += 1;
+        return
+    print("Day", inp)
+    inp += 1
     ft_count_harvest_recursive()
