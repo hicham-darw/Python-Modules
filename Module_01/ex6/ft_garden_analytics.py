@@ -2,27 +2,31 @@ class GardenManager:
     height_validation = 0
     managers = []
 
+    class GardenStats:
+        def __init__(self):
+            self.total_growth = 0
+            self.score = 0
+            self.regular = 0
+            self.flowering = 0
+            self.prize_flower = 0
+
     def __init__(self, name):
         self.plants = []
         self.name = name
+        self.stats = GardenManager.GardenStats()
         GardenManager.managers.append(self)
-        self.score = 0
-        self.regular = 0
-        self.flowering = 0
-        self.prize_flowers = 0
-        self.total_growth = 0
 
     def add_plant(self, plant):
-        self.score += 70
+        self.stats.score += 70
         if (plant.height < 10):
             GardenManager.height_validation -= 1
         self.plants.append(plant)
         if (plant.type == "Tree"):
-            self.regular += 1
+            self.stats.regular += 1
         elif (plant.type == "FloweringPlant"):
-            self.flowering += 1
+            self.stats.flowering += 1
         else:
-            self.prize_flowers += 1
+            self.stats.prize_flower += 1
 
         if (plant.type == "Tree"):
             added_tree = "Added " + plant.name + " " + plant.type
@@ -36,11 +40,11 @@ class GardenManager:
         self.plants.remove(plant)
 
     def watering(self):
-        self.score += 8
+        self.stats.score += 8
         print(self.name, "is helping all plants grow...")
         for plant in self.plants:
             plant.grow(1)
-            self.total_growth += 1
+            self.stats.total_growth += 1
         print("")
 
     def garden_report(self):
@@ -59,16 +63,22 @@ class GardenManager:
                 pf = "Prize points"
                 print(pfname, plant.height, pfcolor, pf, plant.prize, sep="")
         print("")
-        total_added = self.regular + self.flowering + self.prize_flowers
+        regular = self.stats.regular
+        flowering = self.stats.flowering
+        total_added = regular + flowering + self.stats.prize_flower
         p_a = "Plants added: "
         t_g = ", Total growth: "
-        print(p_a, total_added, t_g, self.total_growth, "cm", sep="")
+        print(p_a, total_added, t_g, self.stats.total_growth, "cm", sep="")
         pt = "Plant types:"
         rg = "regular,"
         fl = "flowering,"
         pf = "prize flowers"
-        print(pt, self.regular, rg, self.flowering, fl, self.prize_flowers, pf)
+        print(pt, regular, rg, flowering, fl, self.stats.prize_flower, pf)
         print("")
+
+    @classmethod
+    def create_garden_network(cls):
+        return {manager.name for manager in cls.managers}
 
     @classmethod
     def garden_scores(cls):
@@ -77,7 +87,7 @@ class GardenManager:
         for manager in cls.managers:
             print(manager.name, end="")
             print(": ", end="")
-            print(manager.score, end="")
+            print(manager.stats.score, end="")
             if x < len(cls.managers) - 1:
                 print(", ", end="")
                 x += 1
@@ -138,6 +148,7 @@ if __name__ == '__main__':
     print("")
 # create a Garden manager
     alice = GardenManager("Alice")
+    alice
 
 # create a plants
     oak = Tree("Oak", "Tree", 100)
