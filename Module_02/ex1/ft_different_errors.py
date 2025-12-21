@@ -11,9 +11,9 @@ def garden_operations():
             print("Caught ValueError: invalid literal for int()")
     elif x == 1:
         print("Testing ZeroDivisionError...")
-        try :
-            div = 0
-            res = 10 / div
+        try:
+            res = 10
+            res /= 0
         except ZeroDivisionError:
             print("Caught ZeroDivisionError: division by zero")
     elif x == 2:
