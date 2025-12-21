@@ -6,11 +6,12 @@ def check_temperature(temp_str):
         print("Error: '" + temp_str + "' is not a valid number")
     else:
         if res < 0:
-            print("Error: ", temp_str, "°C is too cold for plants (min 0°C)")
+            print("Error: ", res, "°C is too cold for plants (min 0°C)")
         elif res > 40:
-            print("Error: ", temp_str, "°C is too hot for plants (max 40°C)")
+            print("Error: ", res, "°C is too hot for plants (max 40°C)")
         else:
-            print("Temperature", temp_str, "°C is perfect for plant!")
+            print("Temperature", res, "°C is perfect for plant!")
+
 
 def test_temperature_input():
     print("=== Garden Temperature Checker ===")
@@ -24,5 +25,7 @@ def test_temperature_input():
     check_temperature("-50")
     print("")
     print("All tests completed - program didn't crash")
-        
-test_temperature_input()
+
+
+if __name__ == '__main__':
+    test_temperature_input()
