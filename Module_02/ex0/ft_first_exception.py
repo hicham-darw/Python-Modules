@@ -12,8 +12,7 @@ def check_temperature(temp_str):
         else:
             print("Temperature", temp_str, "°C is perfect for plant!")
 
-
-if __name__ == '__main__':
+def test_temperature_input():
     print("=== Garden Temperature Checker ===")
     print("")
     check_temperature("25")
@@ -25,3 +24,5 @@ if __name__ == '__main__':
     check_temperature("-50")
     print("")
     print("All tests completed - program didn't crash")
+        
+test_temperature_input()
