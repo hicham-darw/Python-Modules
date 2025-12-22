@@ -3,19 +3,24 @@ class GardenManager:
     def __init__(self):
         self.plants = []
         self.tank_level = 20
-        
+
     def add_plants(self, name, water, sun):
-        
+
         try:
             if name is None:
-                raise ValueError("Error adding plant: Plant name cannot be empty!")
+                err = "Error adding plant: Plant name cannot be empty!"
+                raise Exception(err)
             else:
                 if (water > 10):
-                    raise ValueError(f"Error checking {name}: Water level {water} is too high (max 10)")
+                    err = f"Error checking {name}: "
+                    err += f"Water level {water} is too high (max 10)"
+                    raise Exception(err)
                 else:
                     if sun > 10:
-                        raise ValueError(f"Error checking {name}: Water level {sun} is too high (max 10)")
-        except ValueError as e:
+                        err = f"Error checking {name}: "
+                        err += f"sunlight level {sun} is too low (min 2)"
+                        raise Exception(err)
+        except Exception as e:
             print(e)
             return None
         new_plant = Plant(name, water, sun)
@@ -34,12 +39,18 @@ class GardenManager:
         try:
             for plant in self.plants:
                 if plant.water <= 10 and plant.sun >= 2:
-                    print(f"{plant.name}: healthy (water: {plant.water}, sun: {plant.sun})")
+                    msg = f"{plant.name}: healthy "
+                    msg += f"(water: {plant.water}, sun: {plant.sun})"
+                    print(msg)
                 else:
                     if (plant.water > 10):
-                        raise Exception(f"Error checking {plant.name}: Water level {plant.water} is too high (max 10)")
+                        err = f"Error checking {plant.name}: Water level "
+                        err += f"{plant.water} is too high (max 10)"
+                        raise Exception(err)
                     else:
-                        raise Exception(f"Error checking {plant.name}: sunlight level {plant.sun} is too low (min 2)")
+                        err = f"Error checking {plant.name}: "
+                        err += f"sunlight level {plant.sun} is too low (min 2)"
+                        raise Exception(err)
         except Exception as e:
             print(e)
 
@@ -53,7 +64,9 @@ class GardenManager:
     def fill_tank(self, level):
         try:
             if level <= 0:
-                raise Exception("Caught GardenError: cannot fill tank with negative value")
+                err = "Caught GardenError: "
+                err += "cannot fill tank with negative value"
+                raise Exception(err)
             else:
                 self.tank_level += level
         except Exception as e:
@@ -89,4 +102,3 @@ if __name__ == '__main__':
     garden.fill_tank(10)
     print("")
     print("Garden management system test complete!")
-
