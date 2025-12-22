@@ -1,5 +1,3 @@
-#!/bin/usr/env python3
-
 class Plant:
     def __init__(self, name, height, age):
         self.name = name
@@ -23,8 +21,7 @@ class Plant:
         print("Growth this week: ", "+", "6cm", sep="")
 
 
-if __name__ == "__main__":
-    print("=== Day 1 ===")
-    plant1 = Plant("Rose", 25, 30)
-    print("=== Day 7 ===")
-    plant1.week_of_growth()
+print("=== Day 1 ===")
+plant1 = Plant("Rose", 25, 30)
+print("=== Day 7 ===")
+plant1.week_of_growth()
