@@ -35,10 +35,6 @@ class GardenManager:
             added_flower = "Added " + plant.name + " to "
             print(added_flower, self.name, "'s garden", sep="")
 
-# deleting plant or mort
-    def delete_plant(self, plant):
-        self.plants.remove(plant)
-
     def watering(self):
         self.stats.score += 8
         print(self.name, "is helping all plants grow...")
@@ -60,7 +56,7 @@ class GardenManager:
             else:
                 pfname = "- " + plant.name + ": "
                 pfcolor = "cm, " + plant.color + " flowers (blooming), "
-                pf = "Prize points"
+                pf = "Prize points: "
                 print(pfname, plant.height, pfcolor, pf, plant.prize, sep="")
         print("")
         regular = self.stats.regular
@@ -75,6 +71,9 @@ class GardenManager:
         pf = "prize flowers"
         print(pt, regular, rg, flowering, fl, self.stats.prize_flower, pf)
         print("")
+
+    def set_score(self, value):
+        self.score = value
 
     @classmethod
     def create_garden_network(cls):
@@ -142,32 +141,33 @@ class PrizeFlower(FloweringPlant):
         self.prize = prize
 
 
-if __name__ == '__main__':
+print("=== Garden Management System Demo ===")
+print("")
+#   create a Garden manager
+alice = GardenManager("Alice")
 
-    print("=== Garden Management System Demo ===")
-    print("")
-# create a Garden manager
-    alice = GardenManager("Alice")
-    alice
+#   create a plants
+oak = Tree("Oak", "Tree", 100)
+rose = FloweringPlant("Rose", "FloweringPlant", 25, "red", 1)
+sunflower = PrizeFlower("Sunflower", "PrizeFlower", 50, "yellow", 1, 10)
 
-# create a plants
-    oak = Tree("Oak", "Tree", 100)
-    rose = FloweringPlant("Rose", "FloweringPlant", 25, "red", 1)
-    sunflower = PrizeFlower("Sunflower", "PrizeFlower", 50, "yellow", 1, 10)
+#   add plants to alice garden!
+alice.add_plant(oak)
+alice.add_plant(rose)
+alice.add_plant(sunflower)
+print("")
+alice.watering()
 
-# add plants to alice garden!
-    alice.add_plant(oak)
-    alice.add_plant(rose)
-    alice.add_plant(sunflower)
-    print("")
-    alice.watering()
-    print("=== Alices's Garden Report ===")
-    alice.garden_report()
-    bob = GardenManager("Bob")
-    bob.score = 92
-# tmp_manager = GardenManager("tmp")
-    GardenManager.test_validation()
+#   report alice  garden
+print("=== Alices's Garden Report ===")
+alice.garden_report()
+bob = GardenManager("Bob")
+bob.stats.score = 92
 
-# manager = GardenManager("manager")
-    GardenManager.garden_scores()
-    GardenManager.total_garden_managed()
+#   test height validation for each plant
+GardenManager.test_validation()
+
+#   get garden scores
+GardenManager.garden_scores()
+#   total Gardens managed
+GardenManager.total_garden_managed()

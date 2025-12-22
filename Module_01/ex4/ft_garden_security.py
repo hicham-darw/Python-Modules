@@ -18,8 +18,6 @@ class SecurePlant:
             print(invalid, update_height, "cm [REJECTED]", sep="")
             print("Security: Negative height rejected")
             print("")
-            current = "Current plant: " + self.__name + " ("
-            print(current, self.__height, "cm, ", self.__age, " days)", sep="")
         else:
             self.__height += update_height
             print("Height updated: ", self.__height, "cm [OK]", sep="")
@@ -31,16 +29,19 @@ class SecurePlant:
             print(invalid, update_age, "days [REJECTED]", sep="")
             print("Security: Negative age rejected")
             print("")
-            current = "Current plant: " + self.__name + " ("
-            print(current, self.__height, "cm, ", self.__age, " days)", sep="")
         else:
             self.__age += update_age
             print("Age updated: ", self.__age, " days [OK]", sep="")
 
+    def get_info(self):
+        cur_p = "Current plant:"
+        inf = f"{cur_p} {self.__name} ({self.__height}cm, {self.__age} days)"
+        print(inf)
 
-if (__name__ == "__main__"):
-    print("=== Garden Security System ===")
-    plant_rose = SecurePlant("Rose", 20, 29)
-    plant_rose.set_height(5)
-    plant_rose.set_age(1)
-    plant_rose.set_height(-5)
+
+print("=== Garden Security System ===")
+plant_rose = SecurePlant("Rose", 20, 29)
+plant_rose.set_height(5)
+plant_rose.set_age(1)
+plant_rose.set_height(-5)
+plant_rose.get_info()
