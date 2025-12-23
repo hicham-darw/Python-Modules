@@ -39,9 +39,10 @@ class SecurePlant:
         print(inf)
 
 
-print("=== Garden Security System ===")
-plant_rose = SecurePlant("Rose", 20, 29)
-plant_rose.set_height(5)
-plant_rose.set_age(1)
-plant_rose.set_height(-5)
-plant_rose.get_info()
+if __name__ == '__main__':
+    print("=== Garden Security System ===")
+    plant_rose = SecurePlant("Rose", 20, 29)
+    plant_rose.set_height(5)
+    plant_rose.set_age(1)
+    plant_rose.set_height(-5)
+    plant_rose.get_info()

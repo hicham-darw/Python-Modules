@@ -48,13 +48,13 @@ class Vegetable(Plant):
         print(self.n, "is rich in", self.nut_val)
 
 
-print("=== Garden Plant Types ===")
-print("")
-
-fl = Flower("Rose", 25, 30, "red", 1)
-fl.bloom()
-print("")
-tr = Tree("Oak", 500, 1825, 50, 78)
-tr.produce_shade()
-print("")
-veg = Vegetable("Tomato", 80, 90, "summer", "vitamin c")
+if __name__ == '__main__':
+    print("=== Garden Plant Types ===")
+    print("")
+    fl = Flower("Rose", 25, 30, "red", 1)
+    fl.bloom()
+    print("")
+    tr = Tree("Oak", 500, 1825, 50, 78)
+    tr.produce_shade()
+    print("")
+    veg = Vegetable("Tomato", 80, 90, "summer", "vitamin c")
