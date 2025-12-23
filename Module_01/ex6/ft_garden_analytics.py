@@ -13,7 +13,7 @@ class GardenManager:
     def __init__(self, name):
         self.plants = []
         self.name = name
-        self.stats = GardenManager.GardenStats()
+        self.stats = self.GardenStats()
         GardenManager.managers.append(self)
 
     def add_plant(self, plant):
@@ -141,33 +141,35 @@ class PrizeFlower(FloweringPlant):
         self.prize = prize
 
 
-print("=== Garden Management System Demo ===")
-print("")
-#   create a Garden manager
-alice = GardenManager("Alice")
+if __name__ == '__main__':
+    print("=== Garden Management System Demo ===")
+    print("")
+    #   create a Garden manager
+    alice = GardenManager("Alice")
 
-#   create a plants
-oak = Tree("Oak", "Tree", 100)
-rose = FloweringPlant("Rose", "FloweringPlant", 25, "red", 1)
-sunflower = PrizeFlower("Sunflower", "PrizeFlower", 50, "yellow", 1, 10)
+    #   create a plants
+    oak = Tree("Oak", "Tree", 100)
+    rose = FloweringPlant("Rose", "FloweringPlant", 25, "red", 1)
+    sunflower = PrizeFlower("Sunflower", "PrizeFlower", 50, "yellow", 1, 10)
 
-#   add plants to alice garden!
-alice.add_plant(oak)
-alice.add_plant(rose)
-alice.add_plant(sunflower)
-print("")
-alice.watering()
+    #   add plants to alice garden!
+    alice.add_plant(oak)
+    alice.add_plant(rose)
+    alice.add_plant(sunflower)
+    print("")
+    alice.watering()
 
-#   report alice  garden
-print("=== Alices's Garden Report ===")
-alice.garden_report()
-bob = GardenManager("Bob")
-bob.stats.score = 92
+    #   report alice  garden
+    print("=== Alices's Garden Report ===")
+    alice.garden_report()
+    bob = GardenManager("Bob")
+    bob.stats.score = 92
 
-#   test height validation for each plant
-GardenManager.test_validation()
+    #   test height validation for each plant
+    GardenManager.test_validation()
 
-#   get garden scores
-GardenManager.garden_scores()
-#   total Gardens managed
-GardenManager.total_garden_managed()
+    #   get garden scores
+    GardenManager.garden_scores()
+
+    #   total Gardens managed
+    GardenManager.total_garden_managed()
