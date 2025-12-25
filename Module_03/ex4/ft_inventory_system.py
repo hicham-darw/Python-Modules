@@ -59,6 +59,17 @@ def get_rarest_item(player, rare_list):
     return rare_list
 
 
+def print_rarest__items(rare_list):
+    print("Rarest items: ", end="")
+    i = 0
+    while (i < len(rare_list)):
+        if (i == len(rare_list) - 1):
+            print(f"{rare_list[i]}")
+        else:
+            print(f"{rare_list[i]}, ", end="")
+        i += 1
+
+
 alice = {
     'weapon': {'item': 'sword',
                'rarity': 'rare',
@@ -112,11 +123,6 @@ inventory_analytics(alice)
 rare_list = []
 rare_list = get_rarest_item(alice, rare_list)
 rare_list = get_rarest_item(bob, rare_list)
-print("Rarest items: ", end="")
-i = 0
-while (i < len(rare_list)):
-    if (i == len(rare_list) - 1):
-        print(f"{rare_list[i]}")
-    else:
-        print(f"{rare_list[i]}, ", end="")
-    i += 1
+print_rarest__items(rare_list)
+
+
