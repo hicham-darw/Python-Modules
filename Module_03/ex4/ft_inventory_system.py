@@ -39,10 +39,24 @@ def transaction_potions(player1, player2, potions):
             return
 
 
-print("=== Player Inventory System ===")
-print("")
+def inventory_analytics(player):
+    total = 0
+    for key, value in alice.items():
+        total += (value['cost'] * value['total'])
+    print(f"Most valuable player: Alice ({total} gold)")
+    total = 0
+    for key, value in alice.items():
+        total += value['total']
+    print(f"Most items: Alice ({total} items)")
 
-print("=== Alice's Inventory ===")
+
+def get_rarest_item(player, rare_list):
+    for key, value in player.items():
+        if value['rarity'] == 'rare':
+            rare_list.append(value['item'])
+    return rare_list
+
+
 alice = {
     'weapon': {'item': 'sword',
                'rarity': 'rare',
@@ -61,8 +75,6 @@ alice = {
               },
 }
 
-display_inventory_player(alice)
-
 bob = {
     'weapon': {'item': 'magic_ring',
                'rarity': 'rare',
@@ -80,17 +92,29 @@ bob = {
               'total': 1}
 }
 
-# transaction here
+print("=== Player Inventory System ===")
+print("")
+
+# inventory of alice
+print("=== Alice's Inventory ===")
+display_inventory_player(alice)
+
+# transaction here alice and bob
 print("=== Transaction: Alice gives Bob 2 potions ===")
 transaction_potions(alice, bob, 2)
+
 print("=== Inventory Analytics ===")
-inventory_analytics()# continue here
-total = 0
-for key, value in alice.items():
-    total += (value['cost'] * value['total'])
-print(f"Most valuable player: Alice ({total} gold)")
-total = 0
-for key, value in alice.items():
-    total += value['total']
-print(f"Most items: Alice ({total} items)")
-print("Rarest items: {alice['item'][]}, magic_ring")
+inventory_analytics(alice)
+
+# displaye rarest item
+rare_list = []
+rare_list = get_rarest_item(alice, rare_list)
+rare_list = get_rarest_item(bob, rare_list)
+print("Rarest items: ", end="")
+i = 0
+while (i < len(rare_list)):
+    if (i == len(rare_list) - 1):
+        print(f"{rare_list[i]}")
+    else:
+        print(f"{rare_list[i]}, ", end="")
+    i += 1
