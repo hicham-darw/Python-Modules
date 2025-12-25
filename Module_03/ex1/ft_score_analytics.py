@@ -2,20 +2,21 @@ import sys
 
 
 if len(sys.argv) == 1:
-    print("No scores provided. Usage: python3 ft_score_analytics.py <score1> <score2> ...")
+    print("No scores provided. Usage:", end="")
+    print(" python3 ft_score_analytics.py <score1> <score2> ...")
 else:
     scores = []
     try:
         i = 1
         while i < len(sys.argv):
             x = int(sys.argv[i])
-            if  0 >= x:
+            if 0 >= x:
                 raise Exception
             elif x >= 99999:
                 raise Exception
             scores.append(x)
             i += 1
-    except Exception as e:
+    except Exception:
         print("oops, I typed ’banana’ instead of ’1000’")
     else:
         total_players = len(sys.argv) - 1
