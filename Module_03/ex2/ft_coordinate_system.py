@@ -1,15 +1,18 @@
 import math
 
 
-def calculate_distance():
+def calculate_distance(coordinates):
+    x1, y1, z1 = coordinates
     a = tuple((0, 0, 0))
     x2, y2, z2 = a
-    distance = math.sqrt(((x2 - x) ** 2) + ((y2 - y) ** 2) + ((z2 - z) ** 2))
-    return f"Distance between ({x2}, {y2}, {z2}) and ({x}, {y}, {z}): {distance:.2f}"
+    distance = math.sqrt(
+        ((x2 - x1) ** 2) + ((y2 - y1) ** 2) + ((z2 - z1) ** 2)
+    )
+    s = "Distance between"
+    return f"{s} ({x2}, {y2}, {z2}) and ({x1}, {y1}, {z1}): {distance:.2f}"
 
 
 def parsing_coordinates(coordinates):
-    
     lst = coordinates.split(',')
     try:
         x = int(lst[0])
@@ -19,50 +22,36 @@ def parsing_coordinates(coordinates):
         print("Error parsing coordinates: ", end="")
         print(e)
         print(f"Error details - Type: {type(e).__name__}, Args: (\"{e}\",)")
+        return None
     else:
-        print(f"Parsed position: ({x}, {y}, {z})")
         t = (x, y, z)
+        print(f"Parsed position: ({t[0]}, {t[1]}, {t[2]})")
+        return t
 
 
-def unpacking_demonstration():
+def unpacking_demonstration(coordinates):
+    x, y, z = coordinates
     print(f"Player at x={x}, y={y}, z={z}")
     print(f"Coordinates: X={x}, Y={y}, Z={z}")
-
-
-def create_tuple(str):
-    lst = str.split(',')
-    try:
-        x = int(lst[0])
-        y = int(lst[1])
-        z = int(lst[2])
-        t = tuple((x, y, z))
-    except Exception:
-        print("I typed ’abc’ instead of ’123’")
-    else:
-        return t
 
 
 if __name__ == '__main__':
     print("=== Game Coordinate System ===")
     print("")
-    t = create_tuple("10,20,5")
-    x, y, z = t
-    print("Position created ", end="")
-    print(f"({x}, {y}, {z})")
-    print(calculate_distance())
+    t = parsing_coordinates("10, 20, 5")
+    print(f"Position created ({t[0]}, {t[1]}, {t[2]})")
+    print(calculate_distance(t))
     print("")
 
-    # parsing valid coordinates
+    # # parsing valid coordinates
     print("Parsing coordinates: \"3,4,0\"")
-    t = create_tuple("3,4,0")
-    x, y, z = t
-    parsing_coordinates("3,4,0")
-    print(calculate_distance())
+    t = parsing_coordinates("3,4,0")
+    print(calculate_distance(t))
     print("")
 
-    # parsing invalid coordinates
+    # # # parsing invalid coordinates
     print("Parsing invalid coordinates: \"abc,def,ghi\"")
     parsing_coordinates("abc,def,ghi")
     print("")
     print("Unpacking demonstration:")
-    unpacking_demonstration()
+    unpacking_demonstration(t)
