@@ -1,4 +1,13 @@
 def water_plants(plant_list):
+    """ This function check if list of plants is valid or not
+        and do not crash program by invalid input
+
+        Args:
+            plant_list: [list].
+
+        Returns:
+            None.
+    """
     try:
         for plant in plant_list:
             if plant is None:
@@ -12,6 +21,17 @@ def water_plants(plant_list):
 
 
 def test_watering_system():
+    """ This function test valid input and invalid input
+        and  should display is closing watering and cleaning up
+
+        Args:
+            None.
+
+        Returns:
+            None.
+    """
+    print("=== Garden Watering System ===")
+    print("")
     print("Testing normal watering...")
     plant_list = ['tomato', 'lettuce', 'carrots']
     print("Opening watering system")
@@ -26,7 +46,4 @@ def test_watering_system():
     print("Cleanup always happens, even with errors!")
 
 
-if __name__ == '__main__':
-    print("=== Garden Watering System ===")
-    print("")
-    test_watering_system()
+test_watering_system()

@@ -1,4 +1,15 @@
 def check_plant_health(plant_name, water_level, sunlight_hours):
+    """ This function check plant health with valid input
+        if not valid raise an exception
+
+        Args:
+            plant_name (str): name of plant not None
+            water_level (int): water level not higher than max
+            sunlight_hours (int): sunlight hours not lower than 2 hours
+
+        Returns:
+            None.
+    """
     try:
         if plant_name is None:
 
@@ -19,6 +30,17 @@ def check_plant_health(plant_name, water_level, sunlight_hours):
 
 
 def test_plant_checks():
+    """ This function test plant with:
+    good values, empty plant name, bad water, bad sunlight hours
+
+        Args:
+            None.
+
+        Returns:
+            None.
+    """
+    print("=== Garden Plant Health Checker ===")
+    print("")
     print("Testing good values...")
     check_plant_health('tomato', 10, 6)
     print("")
@@ -34,6 +56,4 @@ def test_plant_checks():
     print("All error raising tests completed!")
 
 
-if __name__ == '__main__':
-    print("=== Garden Plant Health Checker ===", end="\n\n")
-    test_plant_checks()
+test_plant_checks()

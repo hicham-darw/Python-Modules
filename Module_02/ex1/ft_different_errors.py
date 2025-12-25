@@ -2,6 +2,14 @@ x = 0
 
 
 def garden_operations():
+    """ This function handle multi exception on each call by global var x.
+
+        Args:
+            None.
+
+        Returns:
+            None.
+                                                                        """
     global x
     if x == 0:
         print("Testing ValueError...")
@@ -40,6 +48,14 @@ def garden_operations():
 
 
 def test_error_types():
+    """ This function call function above each time to display errors.
+
+    Args:
+        None.
+
+    Returns:
+        None.
+                                                                    """
     print("=== Garden Error Types Demo ===")
     print("")
     garden_operations()

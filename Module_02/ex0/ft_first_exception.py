@@ -1,4 +1,12 @@
 def check_temperature(temp_str):
+    """ This function check input temperature is valid or not.
+
+        Args:
+            temp_str (str): number of temperature.
+
+        Returns:
+            None.
+                                                            """
     print("Testing temperature:", temp_str)
     try:
         res = int(temp_str)
@@ -14,6 +22,14 @@ def check_temperature(temp_str):
 
 
 def test_temperature_input():
+    """ This function test some temperatures valid and invalid input
+
+        Args:
+            None.
+
+        Returns:
+            None.
+                                                                    """
     print("=== Garden Temperature Checker ===")
     print("")
     check_temperature("25")
@@ -27,5 +43,4 @@ def test_temperature_input():
     print("All tests completed - program didn't crash")
 
 
-if __name__ == '__main__':
-    test_temperature_input()
+test_temperature_input()
