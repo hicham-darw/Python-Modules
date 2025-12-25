@@ -16,32 +16,81 @@ def display_inventory_player(alice):
     print("")
     print("")
 
-    
+
+def transaction_potions(player1, player2, potions):
+    if potions < 0:
+        return
+    for key, value in player1.items():
+        if (key == 'consumable'):
+            total_item = value['total']
+            if (total_item < potions):
+                print("Transaction rejected!")
+                return
+            value['total'] -= potions
+    for key, value in player2.items():
+        if (key == 'consumable'):
+            value['total'] += potions
+            print("Transaction successful!")
+            print("")
+            print("=== Updated Inventories ===")
+            print(f"Alice potions: {alice['consumable']['total']}")
+            print(f"Bob potions: {bob['consumable']['total']}")
+            print("")
+            return
+
 
 print("=== Player Inventory System ===")
 print("")
 
-print("=== Player Inventory System ===")
+print("=== Alice's Inventory ===")
 alice = {
-    'weapon': {'item': 'sword', 'rarity': 'rare', 'cost': 500, 'total': 1},
-    'consumable': {'item':'potion', 'rarity': 'common', 'cost': 50, 'total': 5},
-    'armor': {'item': 'shield', 'rarity': 'uncommon', 'cost': 200, 'total': 1},
+    'weapon': {'item': 'sword',
+               'rarity': 'rare',
+               'cost': 500,
+               'total': 1
+               },
+    'consumable': {'item': 'potion',
+                   'rarity': 'common',
+                   'cost': 50,
+                   'total': 5
+                   },
+    'armor': {'item': 'shield',
+              'rarity': 'uncommon',
+              'cost': 200,
+              'total': 1
+              },
 }
 
 display_inventory_player(alice)
 
+bob = {
+    'weapon': {'item': 'magic_ring',
+               'rarity': 'rare',
+               'cost': 1000,
+               'total': 1
+               },
+    'consumable': {'item': 'potion',
+                   'rarity': 'common',
+                   'cost': 50,
+                   'total': 0
+                   },
+    'armor': {'item': 'shield',
+              'rarity': 'uncommon',
+              'cost': 200,
+              'total': 1}
+}
 
-## transaction here
+# transaction here
 print("=== Transaction: Alice gives Bob 2 potions ===")
-print("Transaction successful!")
-print("")
-
-print("=== Updated Inventories ===")
-print("Alice potions: 3")
-print("Bob potions: 2")
-print("")
-
+transaction_potions(alice, bob, 2)
 print("=== Inventory Analytics ===")
-print("Most valuable player: Alice (850 gold)")
-print("Most items: Alice (5 items)")
-print("Rarest items: sword, magic_ring")
+inventory_analytics()# continue here
+total = 0
+for key, value in alice.items():
+    total += (value['cost'] * value['total'])
+print(f"Most valuable player: Alice ({total} gold)")
+total = 0
+for key, value in alice.items():
+    total += value['total']
+print(f"Most items: Alice ({total} items)")
+print("Rarest items: {alice['item'][]}, magic_ring")
