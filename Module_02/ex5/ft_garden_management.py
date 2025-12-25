@@ -1,4 +1,17 @@
 class GardenManager:
+    """ GardenManager class for handling errors and check system garden
+
+        attributes:
+            plants: [list]
+            tank_level: started 20
+        methods:
+            __init__(): constructor of garden Manager.
+            add_plant: add plant to the garden.
+            water_plants: water all plants in the garden.
+            check_plant_health: check each plant is healthy.
+            check_tank: if level of thank less than 10
+            fill_tank: upgrade level with posistive value
+    """
 
     def __init__(self):
         self.plants = []
@@ -82,7 +95,7 @@ class Plant(GardenManager):
         self.sun = sun
 
 
-if __name__ == '__main__':
+def garden_management_system():
     print("=== Garden Management System ===")
     print("")
     garden = GardenManager()
@@ -102,3 +115,6 @@ if __name__ == '__main__':
     garden.fill_tank(10)
     print("")
     print("Garden management system test complete!")
+
+
+garden_management_system()
