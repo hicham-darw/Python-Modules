@@ -124,5 +124,3 @@ rare_list = []
 rare_list = get_rarest_item(alice, rare_list)
 rare_list = get_rarest_item(bob, rare_list)
 print_rarest__items(rare_list)
-
-
