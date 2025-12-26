@@ -11,9 +11,9 @@ else:
         while i < len(sys.argv):
             x = int(sys.argv[i])
             if 0 >= x:
-                raise Exception
+                raise Exception("negative value!, let me fix this!")
             elif x >= 99999:
-                raise Exception
+                raise Exception("Holy cow! this is really score!")
             scores.append(x)
             i += 1
     except Exception:
