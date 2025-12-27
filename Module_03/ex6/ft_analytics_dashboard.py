@@ -6,8 +6,28 @@ def get_high_scorers(dic):
     return res
 
 
+def scores_doubled(dic):
+    lst = []
+    doubled = []
+    for key, value in dic.items():
+        if value['score'] in lst:
+            doubled.append(value['score'])
+        else:
+            lst.append(value['score'])
+    return doubled
+
+
+def active_players(dic):
+    lst = []
+    for key, value in dic.items():
+        if (value['stat'] == 'active'):
+            lst.append(key)
+    return (lst)
+
+
 print("=== Game Analytics Dashboard ===")
-print("")
+print()
+
 dic = {
     'alice': {'score': 4000, 'stat': 'active'},
     'charlie': {'score': 4000, 'stat': 'active'},
@@ -15,18 +35,26 @@ dic = {
     'bob': {'score': 1500, 'stat': 'inactive'},
     'darwin': {'score': 1000, 'stat': 'inactive'},
     'hicham': {'score': 1000, 'stat': 'inactive'},
-    'john': {'score': 1100, 'stat': 'inactive'},
-    'spoo': {'score': 1100, 'stat': 'inactive'}
+    'john': {'score': 1100, 'stat': 'ative'},
+    'spoo': {'score': 1100, 'stat': 'active'}
 }
 print("=== List Comprehension Examples ===")
 print("High scorers (>2000): ", end='')
 print(get_high_scorers(dic))
 print("Scores doubled: ", end='')
-x = dic.items()
-print(x)
-#print(scores_doubled(dic))
+print(scores_doubled(dic))
+print(active_players(dic))
+print()
 
-#[4600, 3600, 4300, 4100]")
+print("=== Dict Comprehension Examples ===")
+print("Player scores: {'alice': 2300, 'bob': 1800, 'charlie': 2150}")
+print("Score categories: {'high': 3, 'medium': 2, 'low': 1}")
+print("Achievement counts: {'alice': 5, 'bob': 3, 'charlie': 7}")
+
+
+# print(scores_doubled(dic))
+
+# [4600, 3600, 4300, 4100]")
 # print("Active players: ['alice', 'bob', 'charlie']")
 
 # print("=== Dict Comprehension Examples ===")
