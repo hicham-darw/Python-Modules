@@ -3,7 +3,7 @@ def display_inventory_player(alice):
     item_count = 0
     for key, value in alice.items():
         print(f"{value['item']} ({key}, {value['rarity']}):", end="")
-        print(f"{value['total']}x @ {value['cost']}", end="")
+        print(f"{value['total']}x @ {value['cost']} ", end="")
         print(f"gold each = {value['total'] * value['cost']} gold")
         inv_value += value['cost'] * value['total']
         item_count += value['total']
