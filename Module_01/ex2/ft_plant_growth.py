@@ -26,3 +26,5 @@ if __name__ == '__main__':
     plant1.grow()
     plant1.get_info()
     plant1.week_of_growth()
+    plant1.grow()
+    plant1.get_info()
