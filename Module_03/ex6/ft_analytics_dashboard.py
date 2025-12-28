@@ -71,7 +71,15 @@ def get_unique_players(dic):
 
 def get_unique_achievements(dic):
     res_set = set()
-    achievs = ['level_10', 'leveled_up', 'boss_slayer', 'missionary', 'first kill', 'master', 'hackerman', 'hunter']
+    achievs = [
+        'level_10',
+        'leveled_up',
+        'boss_slayer',
+        'missionary',
+        'first kill',
+        'master',
+        'hackerman',
+        'hunter']
     i = 0
     while (i < len(achievs)):
         counter = 0
@@ -93,6 +101,7 @@ def get_active_regions(dic):
             if (value['region'] not in s):
                 s.add(value['region'])
     return s
+
 
 # combined analysis
 def total_players(dic):
@@ -122,18 +131,17 @@ def get_average_score(dic):
 
 
 def top_performer_player(dic):
-    l = []
     top = 0
     name = ""
     points = 0
     achievements = 0
     for key, value in dic.items():
         if value['achievements'] is not None:
-            if(value['score'] > top):
+            if (value['score'] > top):
                 achievements = len(value['achievements'])
                 name = key
                 points = value['score']
-    return(f"{name} ({points} points, {achievements} achievements)")
+    return f"{name} ({points} points, {achievements} achievements)"
 
 
 dic = {
@@ -142,7 +150,12 @@ dic = {
         'score': 4000,
         'stat': 'active',
         'region': 'north',
-        'achievements': ['first kill', 'level_10', 'boss_slayer', 'master',  'hunter']
+        'achievements': [
+            'first kill',
+            'level_10',
+            'boss_slayer',
+            'master',
+            'hunter']
         },
     'diana': {
         'unique_player': 1,
@@ -229,10 +242,10 @@ print("Unique players: ", end='')
 print(get_unique_players(dic))
 print("Unique achievements: ", end='')
 print(get_unique_achievements(dic))
-print("Active regions: ",end='')
+print("Active regions: ", end='')
 print(get_active_regions(dic))
 print()
-# combined analysis 
+# combined analysis
 print("=== Combined Analysis ===")
 print("total players: ", end='')
 print(total_players(dic))
