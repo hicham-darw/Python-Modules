@@ -18,7 +18,7 @@ def proccessing_game_events(total: int):
 
 def fibonacci(nbr):
     """
-    this function take decimal number 
+    this function take decimal number
     returns fibonacci of number
     """
     if (nbr == 0 or nbr == 1):
