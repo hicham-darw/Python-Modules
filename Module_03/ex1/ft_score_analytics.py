@@ -12,7 +12,7 @@ else:
             x = int(sys.argv[i])
             if 0 >= x:
                 raise Exception(sys.argv[i])
-            elif x >= 99999:
+            elif x >= 100000:
                 raise Exception(sys.argv[i])
             scores.append(x)
             i += 1

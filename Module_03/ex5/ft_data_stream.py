@@ -1,4 +1,11 @@
 def proccessing_game_events(total: int):
+    """
+    this function processing game events with value total
+    args:
+        int : total of events
+    return:
+        None
+    """
     players = ['alice', 'bob', 'charlie', ]
     events = ['killed monster', 'found treasure', 'leveled up']
     for i in range(total):
@@ -10,6 +17,10 @@ def proccessing_game_events(total: int):
 
 
 def fibonacci(nbr):
+    """
+    this function take decimal number 
+    returns fibonacci of number
+    """
     if (nbr == 0 or nbr == 1):
         return nbr
     else:
@@ -17,11 +28,22 @@ def fibonacci(nbr):
 
 
 def loop_fibo(nbr: int):
+    """
+    this function loop until reaches nbr
+    and yield everytime i and fibonacci of i
+    """
     for i in range(nbr):
         yield i, fibonacci(i)
 
 
 def is_prime(nbr: int):
+    """
+    this function take number as param and return
+    nbr if number is prime or -1 if not prime number
+    args:
+        int
+    returns:
+        int"""
     i = 2
     if (nbr == 2):
         return (nbr)
@@ -33,6 +55,13 @@ def is_prime(nbr: int):
 
 
 def prime_numbers(nbr):
+    """
+    yield first n number of prime numbers
+    args:
+        int
+    return:
+        None
+    """
     x = 2
     i = 0
     while (i < nbr):

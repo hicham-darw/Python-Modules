@@ -1,4 +1,11 @@
 def display_inventory_player(alice):
+    """
+    this function display inventory of player
+    args:
+        dict[str: int,str]
+    returns:
+        None
+    """
     inv_value = 0
     item_count = 0
     for key, value in alice.items():
@@ -20,6 +27,13 @@ def display_inventory_player(alice):
 
 
 def transaction_potions(player1, player2, potions):
+    """
+    this function make a transaction potions between two players
+    args:
+        player1, player , number_of_potions
+    returns:
+        None
+    """
     if potions < 0:
         return
     for key, value in player1.items():
@@ -42,6 +56,13 @@ def transaction_potions(player1, player2, potions):
 
 
 def inventory_analytics(player):
+    """
+    function print msgs for inventory player
+    args:
+        dict
+    returns:
+        None
+    """
     total = 0
     for key, value in alice.items():
         total += (value['cost'] * value['total'])
@@ -53,13 +74,20 @@ def inventory_analytics(player):
 
 
 def get_rarest_item(player, rare_list):
+    """
+    this function returns the rarest item
+    args:
+        dict : player, list : rare_list
+    return:
+        list : rare_list
+    """
     for key, value in player.items():
         if value['rarity'] == 'rare':
             rare_list.append(value['item'])
     return rare_list
 
 
-def print_rarest__items(rare_list):
+def print_rarest_items(rare_list):
     print("Rarest items: ", end="")
     i = 0
     while (i < len(rare_list)):
@@ -123,4 +151,4 @@ inventory_analytics(alice)
 rare_list = []
 rare_list = get_rarest_item(alice, rare_list)
 rare_list = get_rarest_item(bob, rare_list)
-print_rarest__items(rare_list)
+print_rarest_items(rare_list)

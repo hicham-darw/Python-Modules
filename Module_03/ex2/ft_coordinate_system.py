@@ -2,6 +2,13 @@ import math
 
 
 def calculate_distance(coordinates):
+    """
+    this function calculate  distance between two points in 3D
+    args:
+        a tuple (x, y, z)
+    returns:
+        string display both coordinates and distance between them
+    """
     x1, y1, z1 = coordinates
     a = tuple((0, 0, 0))
     x2, y2, z2 = a
@@ -13,6 +20,13 @@ def calculate_distance(coordinates):
 
 
 def parsing_coordinates(coordinates):
+    """
+    parsing coordinates for invalid input
+    Args:
+        coordinates
+    returns:
+        a tuple if not any error or exception
+    """
     lst = coordinates.split(',')
     try:
         x = int(lst[0])
@@ -30,6 +44,13 @@ def parsing_coordinates(coordinates):
 
 
 def unpacking_demonstration(coordinates):
+    """
+    function unpack a tuple and print values
+    args:
+        a tuple
+    returns:
+        None
+    """
     x, y, z = coordinates
     print(f"Player at x={x}, y={y}, z={z}")
     print(f"Coordinates: X={x}, Y={y}, Z={z}")
