@@ -1,5 +1,13 @@
 # lists ----------------------
 def get_high_scorers(dic):
+    """
+    this function take a dictionary and get high scores
+    greather than 200 in list
+    args:
+        dictionary:
+    return:
+        list []
+    """
     res = []
     for key, value in dic.items():
         if value['score'] > 2000:
@@ -8,6 +16,13 @@ def get_high_scorers(dic):
 
 
 def scores_doubled(dic):
+    """
+    this function get doubled scores
+    args:
+        dictionary
+    returns:
+        list []
+    """
     lst = []
     doubled = []
     for key, value in dic.items():
@@ -19,6 +34,13 @@ def scores_doubled(dic):
 
 
 def active_players(dic):
+    """
+        this function display active players
+        args:
+            dictionary
+        returns:
+            list []
+    """
     lst = []
     for key, value in dic.items():
         if (value['stat'] == 'active'):
@@ -28,6 +50,13 @@ def active_players(dic):
 
 # dictionaries -----------------------
 def player_scores(dic):
+    """
+    this function return scores players key , value (name: score)
+        args:
+            dict
+        returns:
+            dict
+    """
     res_dic = {}
     for key, value in dic.items():
         res_dic[key] = value['score']
@@ -35,6 +64,18 @@ def player_scores(dic):
 
 
 def score_categories(dic):
+    """
+    this function return a dictionary has 3 keys
+    high: ?, medium: ?, low: ?
+    values
+        total players high scores
+        total players medium scores
+        total players low score
+    args:
+        dict
+    returns:
+        dict
+    """
     res_dic = {}
     max_score = 0
     min_score = 0
@@ -53,6 +94,13 @@ def score_categories(dic):
 
 
 def achievement_counts(dic):
+    """
+    this function return total achievements of players
+    args:
+        dict
+    returns:
+        dict key, value (name, total_achievements)
+    """
     res_dic = {}
     for key, value in dic.items():
         if (value['achievements'] is not None):
@@ -62,6 +110,13 @@ def achievement_counts(dic):
 
 # sets -----------------------------------
 def get_unique_players(dic):
+    """
+    this function return unique players in data set
+    args:
+        dict
+    returns:
+        set
+    """
     res_set = set()
     for key, value in dic.items():
         if (value['unique_player'] == 1):
@@ -70,6 +125,13 @@ def get_unique_players(dic):
 
 
 def get_unique_achievements(dic):
+    """
+    this function returns unique achievements in set data structure
+    Args:
+        dict
+    returns:
+        set
+    """
     res_set = set()
     achievs = [
         'level_10',
@@ -95,6 +157,13 @@ def get_unique_achievements(dic):
 
 
 def get_active_regions(dic):
+    """
+    this function return active regions
+    args:
+        dict
+    returns:
+        set (active regions)
+    """
     s = set()
     for value in dic.values():
         if value['stat'] == 'active':
@@ -105,6 +174,13 @@ def get_active_regions(dic):
 
 # combined analysis
 def total_players(dic):
+    """
+    this function return total players
+    Args:
+        dict
+    returns:
+        int total_players
+    """
     t_player = 0
     for key in dic.keys():
         t_player += 1
@@ -112,6 +188,13 @@ def total_players(dic):
 
 
 def total_unique_achievements(dic):
+    """
+    this function total unique achievements
+    args:
+        dict
+    returns:
+        set (unique achievements)
+    """
     s = set()
     for value in dic.values():
         if (value['achievements'] is not None):
@@ -122,6 +205,13 @@ def total_unique_achievements(dic):
 
 
 def get_average_score(dic):
+    """
+    this function return average of score players
+    args:
+        dict
+    returns:
+        int, float average
+    """
     total_score = 0
     div = 0
     for value in dic.values():
@@ -131,6 +221,13 @@ def get_average_score(dic):
 
 
 def top_performer_player(dic):
+    """
+    this function returns performer player by score and achievements
+    args:
+        dict
+    returns:
+        str (xxxx points, xx achievements)
+    """
     top = 0
     name = ""
     points = 0
