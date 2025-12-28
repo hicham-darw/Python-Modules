@@ -11,13 +11,13 @@ else:
         while i < len(sys.argv):
             x = int(sys.argv[i])
             if 0 >= x:
-                raise Exception("negative value!, let me fix this!")
+                raise Exception(sys.argv[i])
             elif x >= 99999:
-                raise Exception("Holy cow! this is really score!")
+                raise Exception(sys.argv[i])
             scores.append(x)
             i += 1
-    except Exception:
-        print("oops, I typed ’banana’ instead of ’1000’")
+    except Exception as e:
+        print(f"oops, I typed ’{e}’ instead of ’1000’")
     else:
         total_players = len(sys.argv) - 1
         total_score = 0
