@@ -1,9 +1,11 @@
 import math
+import sys
 
 
 def calculate_distance(coordinates):
     """
     this function calculate  distance between two points in 3D
+    using tuple data-type Ordered and Unchangable
     args:
         a tuple (x, y, z)
     returns:
@@ -29,9 +31,9 @@ def parsing_coordinates(coordinates):
     """
     lst = coordinates.split(',')
     try:
-        x = int(lst[0])
-        y = int(lst[1])
-        z = int(lst[2])
+        x = float(lst[0])
+        y = float(lst[1])
+        z = float(lst[2])
     except Exception as e:
         print("Error parsing coordinates: ", end="")
         print(e)
@@ -56,23 +58,20 @@ def unpacking_demonstration(coordinates):
     print(f"Coordinates: X={x}, Y={y}, Z={z}")
 
 
-if __name__ == '__main__':
+def main():
     print("=== Game Coordinate System ===")
     print("")
-    t = parsing_coordinates("10, 20, 5")
-    print(f"Position created ({t[0]}, {t[1]}, {t[2]})")
-    print(calculate_distance(t))
-    print("")
+    try:
+        t = parsing_coordinates(sys.argv[1])
+        print(f"Position created ({t[0]}, {t[1]}, {t[2]})")
+        print(calculate_distance(t))
+        print("")
+    except Exception:
+        print("invalid args. Usage: python3 ft_coordinate_system.py <coordinates>")
+    else:
+        print("Unpacking demonstration:")
+        x, y, z = t
+        print(f"Player at x={x}, y={y}, z={z}")
+        print(f"Coordinates:  x={x}, y={y}, z={z}")
 
-    # # parsing valid coordinates
-    print("Parsing coordinates: \"3,4,0\"")
-    t = parsing_coordinates("3,4,0")
-    print(calculate_distance(t))
-    print("")
-
-    # # # parsing invalid coordinates
-    print("Parsing invalid coordinates: \"abc,def,ghi\"")
-    parsing_coordinates("abc,def,ghi")
-    print("")
-    print("Unpacking demonstration:")
-    unpacking_demonstration(t)
+main()

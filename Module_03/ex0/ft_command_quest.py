@@ -3,8 +3,7 @@ import sys
 
 def command_quest(argv):
     """
-    function take arguments from user and convert it to int
-    store it function also handle invalid input
+    function take arguments from user and display it to stdout
     """
     print("=== Command Quest ===")
     if len(argv) == 1:
