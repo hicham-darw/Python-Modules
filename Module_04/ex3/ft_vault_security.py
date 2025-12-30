@@ -1,7 +1,7 @@
 def main():
     """
-    Reads a secure archive and writes it to a new file, ensuring safe access 
-    and preservation.
+    reads a secure archive and writes it to a new file, ensuring safe access
+    and preservation
     """
     print("=== CYBER ARCHIVES - VAULT SECURITY SYSTEM ===\n")
     try:

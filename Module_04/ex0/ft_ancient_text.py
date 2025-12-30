@@ -15,7 +15,7 @@ def main():
         print()
         f.close()
         print("Data recovery complete. Storage unit disconnected.")
-    except FileNotFoundError as e:
+    except FileNotFoundError:
         print("ERROR: Storage vault not found.")
 
 

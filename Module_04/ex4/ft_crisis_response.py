@@ -1,7 +1,7 @@
 def crisis_response(file):
     """
-    Runs a series of archive access attempts to simulate crisis scenarios, 
-    demonstrating proper handling of missing files -security restrictions 
+    Runs a series of archive access attempts to simulate crisis scenarios,
+    demonstrating proper handling of missing files -security restrictions
     and normal operations.
     """
     try:
