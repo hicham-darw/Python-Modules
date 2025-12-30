@@ -9,14 +9,14 @@ def main():
 
     try:
         print("Connection established...", end='\n\n')
-        f = open('../data-generator-tools/ancient_fragment.txt')
+        f = open('../ancient_fragment.txt')
         print("RECOVERED DATA:")
         print(f.read())
         print()
-        print("Data recovery complete. Storage unit disconnected.")
         f.close()
+        print("Data recovery complete. Storage unit disconnected.")
     except FileNotFoundError as e:
-        print(e)
+        print("ERROR: Storage vault not found.")
 
 
 main()

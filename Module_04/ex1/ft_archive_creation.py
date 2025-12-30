@@ -1,4 +1,7 @@
 def main():
+    """
+    main creates and writes preservation data to a new storage file.
+    """
     file = 'new_discovery.txt'
     print("=== CYBER ARCHIVES - PRESERVATION SYSTEM ===", end='\n\n')
     try:
@@ -13,6 +16,7 @@ def main():
         f.write('{[}ENTRY 003{]} Archived by Data Archivist trainee\n')
         print("{[}ENTRY 003{]} Archived by Data Archivist trainee", end='\n\n')
         print("Data inscription complete. Storage unit sealed.")
+        f.close()
         print(f"Archive '{file}' ready for long-term preservation.")
     except Exception as e:
         print(e)

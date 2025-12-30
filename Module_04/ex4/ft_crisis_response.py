@@ -1,4 +1,9 @@
 def crisis_response(file):
+    """
+    Runs a series of archive access attempts to simulate crisis scenarios, 
+    demonstrating proper handling of missing files -security restrictions 
+    and normal operations.
+    """
     try:
         print(f"CRISIS ALERT: Attempting access to '{file}'...")
         with open(file, 'r') as f:

@@ -2,7 +2,11 @@ import sys
 
 
 def main():
-    print("=== CYBER ARCHIVES - COMMUNICATION SYSTEM ===\n", end='\n')
+    """
+    entry point for the communication system that collects user input and
+    ensures strict separation of standard output and diagnostic alerts.
+    """
+    print("=== CYBER ARCHIVES - COMMUNICATION SYSTEM ===\n\n")
     print("Input Stream active. Enter archivist ID: ", end='', flush=True)
     arch_id = sys.stdin.readline().rstrip()
     print("Input Stream active. Enter status report: ", end='', flush=True)

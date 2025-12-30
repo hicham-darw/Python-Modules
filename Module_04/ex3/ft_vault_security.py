@@ -1,7 +1,11 @@
 def main():
+    """
+    Reads a secure archive and writes it to a new file, ensuring safe access 
+    and preservation.
+    """
     print("=== CYBER ARCHIVES - VAULT SECURITY SYSTEM ===\n")
     try:
-        with open('file.txt', "r") as file:
+        with open('../security_protocols.txt', "r") as file:
             print("Initiating secure vault access...")
             print("Vault connection established with failsafe protocols\n")
             data = file.read()
@@ -14,8 +18,8 @@ def main():
     try:
         with open("file.txt", "w") as file:
             print("SECURE PRESERVATION:")
-            file.write('{[}CLASSIFIED{]} Quantum encryption keys recovered')
-            print('{[}CLASSIFIED{]} Quantum encryption keys recovered')
+            file.write(data)
+            print(data)
             print("Vault automatically sealed upon completion")
         print("\nAll vault operations completed with maximum security.")
     except Exception as e:
