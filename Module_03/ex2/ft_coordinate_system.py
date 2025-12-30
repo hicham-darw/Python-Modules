@@ -67,11 +67,13 @@ def main():
         print(calculate_distance(t))
         print("")
     except Exception:
-        print("invalid args. Usage: python3 ft_coordinate_system.py <coordinates>")
+        print("invalid args. ", end='')
+        print("Usage: python3 ft_coordinate_system.py <coordinates>")
     else:
         print("Unpacking demonstration:")
         x, y, z = t
         print(f"Player at x={x}, y={y}, z={z}")
         print(f"Coordinates:  x={x}, y={y}, z={z}")
+
 
 main()

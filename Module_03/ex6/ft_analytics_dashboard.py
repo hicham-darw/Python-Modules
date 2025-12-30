@@ -2,17 +2,13 @@
 def get_high_scorers(dic):
     """
     this function take a dictionary and get high scores
-    greather than 200 in list
+    greather than 2000 in list
     args:
         dictionary:
     return:
         list []
     """
-    res = []
-    for key, value in dic.items():
-        if value['score'] > 2000:
-            res.append(key)
-    return res
+    return [k for k, v in dic.items() if v['score'] > 2000]
 
 
 def scores_doubled(dic):
@@ -23,14 +19,8 @@ def scores_doubled(dic):
     returns:
         list []
     """
-    lst = []
-    doubled = []
-    for key, value in dic.items():
-        if value['score'] in lst:
-            doubled.append(value['score'])
-        else:
-            lst.append(value['score'])
-    return doubled
+    lst = [value['score'] for value in dic.values()]
+    return [score for score in set(lst) if lst.count(score) > 1]
 
 
 def active_players(dic):
@@ -41,11 +31,7 @@ def active_players(dic):
         returns:
             list []
     """
-    lst = []
-    for key, value in dic.items():
-        if (value['stat'] == 'active'):
-            lst.append(key)
-    return lst
+    return [k for k, v in dic.items() if v['stat'] == 'active']
 
 
 # dictionaries -----------------------
@@ -57,10 +43,7 @@ def player_scores(dic):
         returns:
             dict
     """
-    res_dic = {}
-    for key, value in dic.items():
-        res_dic[key] = value['score']
-    return res_dic
+    return {k: v['score'] for k, v in dic.items()}
 
 
 def score_categories(dic):
@@ -101,10 +84,8 @@ def achievement_counts(dic):
     returns:
         dict key, value (name, total_achievements)
     """
-    res_dic = {}
-    for key, value in dic.items():
-        if (value['achievements'] is not None):
-            res_dic[key] = len(value['achievements'])
+    res_dic = {k: len(v['achievements']) for k, v in dic.items()
+               if v['achievements'] is not None}
     return res_dic
 
 
@@ -117,10 +98,7 @@ def get_unique_players(dic):
     returns:
         set
     """
-    res_set = set()
-    for key, value in dic.items():
-        if (value['unique_player'] == 1):
-            res_set.add(key)
+    res_set = {k for k, v in dic.items() if v['unique_player'] == 1}
     return res_set
 
 
@@ -164,12 +142,7 @@ def get_active_regions(dic):
     returns:
         set (active regions)
     """
-    s = set()
-    for value in dic.values():
-        if value['stat'] == 'active':
-            if (value['region'] not in s):
-                s.add(value['region'])
-    return s
+    return {v['region'] for v in dic.values() if v['stat'] == 'active'}
 
 
 # combined analysis
