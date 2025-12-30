@@ -45,7 +45,7 @@ def active_players(dic):
     for key, value in dic.items():
         if (value['stat'] == 'active'):
             lst.append(key)
-    return (lst)
+    return lst
 
 
 # dictionaries -----------------------
@@ -121,7 +121,7 @@ def get_unique_players(dic):
     for key, value in dic.items():
         if (value['unique_player'] == 1):
             res_set.add(key)
-    return (res_set)
+    return res_set
 
 
 def get_unique_achievements(dic):
@@ -201,7 +201,7 @@ def total_unique_achievements(dic):
             for d in value['achievements']:
                 if (d not in s):
                     s.add(d)
-    return (len(s))
+    return len(s)
 
 
 def get_average_score(dic):
@@ -287,27 +287,6 @@ dic = {
         'score': 1000,
         'stat': 'inactive',
         'region': 'west',
-        'achievements': None
-        },
-    'hicham': {
-        'unique_player': 0,
-        'score': 1000,
-        'stat': 'inactive',
-        'region': 'north',
-        'achievements': None
-        },
-    'john': {
-        'unique_player': 0,
-        'score': 1100,
-        'stat': 'ative',
-        'region': 'central',
-        'achievements': None
-        },
-    'spoo': {
-        'unique_player': 0,
-        'score': 1100,
-        'stat': 'active',
-        'region': 'east',
         'achievements': None
         }
 }
