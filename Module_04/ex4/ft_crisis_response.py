@@ -21,11 +21,11 @@ def crisis_response(file):
 
 def main():
     print("=== CYBER ARCHIVES - CRISIS RESPONSE SYSTEM ===\n")
-    crisis_response('lost_archive.txt')
+    crisis_response('../lost_archive.txt')
     print()
-    crisis_response('classified_data.txt')
+    crisis_response('../classified_vault.txt')
     print()
-    crisis_response('standard_archive.txt')
+    crisis_response('../standard_archive.txt')
     print()
     print("All crisis scenarios handled successfully. Archives secure.")
 

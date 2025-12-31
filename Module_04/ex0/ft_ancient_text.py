@@ -9,7 +9,7 @@ def main():
 
     try:
         print("Connection established...", end='\n\n')
-        f = open('../ancient_fragment.txt')
+        f = open('../' + file)
         print("RECOVERED DATA:")
         print(f.read())
         print()
