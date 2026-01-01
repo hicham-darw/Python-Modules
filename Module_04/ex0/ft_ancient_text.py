@@ -6,17 +6,14 @@ def main():
     file = 'ancient_fragment.txt'
     print("=== CYBER ARCHIVES - DATA RECOVERY SYSTEM ===", end='\n\n')
     print(f"Accessing Storage Vault: {file}")
-
-    try:
-        print("Connection established...", end='\n\n')
-        f = open('../' + file)
-        print("RECOVERED DATA:")
-        print(f.read())
-        print()
-        f.close()
-        print("Data recovery complete. Storage unit disconnected.")
-    except Exception:
-        print("ERROR: Storage vault not found.")
+    print("Connection established...", end='\n\n')
+    f = open('../' + file)
+    print("RECOVERED DATA:")
+    print(f.read())
+    print()
+    f.close()
+    print("Data recovery complete. Storage unit disconnected.")
+    print("ERROR: Storage vault not found.")
 
 
 main()

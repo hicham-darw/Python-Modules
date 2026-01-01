@@ -21,7 +21,7 @@ def main():
     s_err += "System diagnostic: Communication channels verified\n"
     sys.stderr.write(s_err)
     s_out = "{[}STANDARD{]} "
-    s_out = "Data transmission complete\n"
+    s_out += "Data transmission complete\n"
     sys.stdout.write(s_out)
     print("\nThree-channel communication test successful.")
 
