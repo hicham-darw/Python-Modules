@@ -10,11 +10,9 @@ class DataProcessor(ABC):
     def process(self, data: Any) -> str:
         pass
 
-
     @abstractmethod
     def validate(self, data: Any) -> bool:
         pass
-
 
     def format_output(self, result: str) -> str:
         pass
@@ -33,10 +31,8 @@ class NumericProcessor(DataProcessor):
         else:
             format = f"Output: Processed {self.size} numeric values, sum={self.total_numbers}, avg={self.total_numbers / self.size}"
             print(format)
-            self.format_output(format)
 
     def validate(self, data: int) -> bool:
-        print("Validation: Numeric data verified")
         if not isinstance(data, list):
             return False
         try:
@@ -47,10 +43,18 @@ class NumericProcessor(DataProcessor):
         except Exception:
             return False
         return True
-    
-    def format_output(self, format) -> str:
-        return format
 
+    def format_output(self, format) -> str:
+        if not self.validate(format):
+            return ("Invalid data!")
+        else:
+            total = 0
+            count = 0
+            for s in format:
+                total += s
+                count += 1
+            format = f"Processed {len(format)} numeric values, sum={total}, avg={total / count}"
+            return format
 
 
 class TextProcessor(DataProcessor):
@@ -66,16 +70,24 @@ class TextProcessor(DataProcessor):
             for d in data.split():
                 self.characters += len(d)
             format = f"Output: Processed text: {self.characters} characters, {self.words} words"
-            print(self.format_output(format))
+            print(format)
 
     def validate(self, data: str) -> bool:
-        print("Validation: Text data verified")
         if not isinstance(data, str):
             return False
         return True
 
     def format_output(self, result: str) -> str:
-        return (result)
+        if not self.validate(result):
+            return ("Invalid data!")
+        else:
+            words = len(result.split())
+            chars = 0
+            for s in result.split():
+                chars += len(s)
+            format = f"Processed text: {chars} characters, {words} words"
+            return (format)
+
 
 class LogProcessor(DataProcessor):
     def __init__(self):
@@ -83,45 +95,58 @@ class LogProcessor(DataProcessor):
 
     def process(self, data: Any) -> str:
         if not self.validate(data):
-            raise ValueError('INFO: System ready"')
+            raise ValueError("Invalid!, must be string")
         else:
             print("Output: [ALERT] ERROR level detected: Connection timeout")
 
-
     def validate(self, data: Any) -> bool:
-        print("Validation: Log entry verified")
         if not isinstance(data, str):
             return False
         return True
-    
+
     def format_output(self, result: str) -> str:
-        pass
+        if not self.validate(result):
+            return ("Invalid data!")
+        else:
+            return f"[{result}] {result} level detected: System Ready"
+
 
 if __name__ == '__main__':
+#   Numeric Processor
     print("=== CODE NEXUS - DATA PROCESSOR FOUNDATION ===\n")
     print("Initializing Numeric Processor...")
     lst = [1, 2, 9, 4, 5]
     print(f"Processing data: {lst}")
+    print("Validation: Numeric data verified")
     proc = NumericProcessor()
     proc.process(lst)
     print()
-    
+
+#   text Processor
     print("Initializing Text Processor...")
     print("Processing data: \"Hello Nexus World\"")
     text = "Hello Nexus World"
+    print("Validation: Text data verified")
     proc = TextProcessor()
     proc.process(text)
     print()
 
+#   Log Processor
     print("Initializing Log Processor...")
     text = "\"ERROR: Connection timeout\""
     print(f"Processing data: {text}")
+    print("Validation: Log entry verified")
+
     proc = LogProcessor()
     proc.process(text)
     print()
-
     print("=== Polymorphic Processing Demo ===")
-    # add a list for loop to polymorphic processing!
-
-
-
+    print("Processing multiple data types through same interface...")
+    processors = [NumericProcessor(), TextProcessor(), LogProcessor()]
+    proc_data = [[1, 2, 3], "Hello World!!", "INFO"]
+    index = 0
+    for proc, data in zip(processors, proc_data):
+        print(f"Result {index}: ", end='')
+        print(proc.format_output(data))
+        index += 1
+    print("\nFoundation systems online. Nexus ready for advanced streams.")
