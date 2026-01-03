@@ -62,33 +62,39 @@ class TextProcessor(DataProcessor):
         if not self.validate(data):
             raise ValueError("Inavlid!, must be string")
         else:
-            self.word = len(data.split())
+            self.words = len(data.split())
             for d in data.split():
                 self.characters += len(d)
-            self.format_output(format)
+            format = f"Output: Processed text: {self.characters} characters, {self.words} words"
+            print(self.format_output(format))
 
     def validate(self, data: str) -> bool:
-        if isinstance(data, str):
-            return True
-        print("OK!!!!!!")
-        return False
+        print("Validation: Text data verified")
+        if not isinstance(data, str):
+            return False
+        return True
 
-    def fromat_output(self, result: str) -> str:
-        format = f"Output: Processed text: {self.characters} characters, {self.words} words"
-        print(format)
-
+    def format_output(self, result: str) -> str:
+        return (result)
 
 class LogProcessor(DataProcessor):
     def __init__(self):
         pass
 
     def process(self, data: Any) -> str:
-        pass
+        if not self.validate(data):
+            raise ValueError('INFO: System ready"')
+        else:
+            print("Output: [ALERT] ERROR level detected: Connection timeout")
+
 
     def validate(self, data: Any) -> bool:
-        pass
+        print("Validation: Log entry verified")
+        if not isinstance(data, str):
+            return False
+        return True
     
-    def fromat_output(self, result: str) -> str:
+    def format_output(self, result: str) -> str:
         pass
 
 if __name__ == '__main__':
@@ -98,15 +104,24 @@ if __name__ == '__main__':
     print(f"Processing data: {lst}")
     proc = NumericProcessor()
     proc.process(lst)
-
-    print("")
+    print()
+    
     print("Initializing Text Processor...")
     print("Processing data: \"Hello Nexus World\"")
     text = "Hello Nexus World"
     proc = TextProcessor()
     proc.process(text)
-    
+    print()
 
+    print("Initializing Log Processor...")
+    text = "\"ERROR: Connection timeout\""
+    print(f"Processing data: {text}")
+    proc = LogProcessor()
+    proc.process(text)
+    print()
+
+    print("=== Polymorphic Processing Demo ===")
+    # add a list for loop to polymorphic processing!
 
 
 
