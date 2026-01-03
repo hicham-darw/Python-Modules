@@ -89,6 +89,7 @@ class TextProcessor(DataProcessor):
             return (format)
 
 
+
 class LogProcessor(DataProcessor):
     def __init__(self):
         pass
