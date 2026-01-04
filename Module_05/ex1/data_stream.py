@@ -3,38 +3,49 @@ from typing import Any, List, Dict, Union, Optional
 
 
 class DataStream(ABC):
-    def __init__(self, stream_id, type_stream):
+    def __init__(self, stream_id: str, type_stream: str):
+        """ constructor initialize any child with this values """
         self.stream_id = stream_id
         self.type = type_stream
 
     @abstractmethod
     def process_batch(self, data_batch: List[Any]) -> str:
+        """ process batch dat """
         pass
 
-    def filter_data(self, data_batch: List[Any], criteria: Optional[str] = None) -> List[Any]:
+    def filter_data(
+            self, data_batch: List[Any],
+            criteria: Optional[str] = None) -> List[Any]:
+        """ filetring data and made fresh and readable """
         pass
 
     def get_stats(self) -> Dict[str, Union[str, int, float]]:
+        """ gets stats of stream """
         pass
 
 
 class SensorStream(DataStream):
+    """Sensor Stream class"""
     def __init__(self, stream_id,):
         super().__init__(stream_id, "Environmental Data")
         self.data_dic = {}
         self.alerts = 0
 
     def process_batch(self, data_batch: List[Any]) -> str:
-        data = self.filter_data(data_batch)
-        if  len(data) < 1:
+        """ this process data input """
+        data = self.filter_data(data_batch, ['temp', 'humidity', 'pressure'])
+        if len(data) < 1:
             return ("Invalid data!")
-        return f"Sensor analysis: {len(self.data_dic)} readings processed, avg temp: {self.data_dic['temp']}°C"
+        format = f"Sensor analysis: {len(self.data_dic)} readings processed, "
+        format += f"avg temp: {self.data_dic['temp']}°C"
+        return (format)
 
     def filter_data(self, data_batch: List[Any], criteria: Optional[str] = None) -> List[Any]:
+        """filtering data method """
         try:
             for val in data_batch:
                 tmp = val.split(":")
-                if tmp[0] not in ['temp', 'humidity', 'pressure']:
+                if tmp[0] not in criteria:
                     raise Exception
                 self.data_dic[tmp[0]] = float(tmp[1])
                 if (float(tmp[1]) > 50):
@@ -57,11 +68,13 @@ class TransactionStream(DataStream):
         self.flow = 0
 
     def process_batch(self, data_batch: List[Any]) -> str:
-        self.filter_data(data_batch)
+        self.filter_data(data_batch, ['buy', 'sell'])
         if len(self.data_dic) < 1:
             return "Transaction analysis: rejected!\n"
         else:
-            return f"Transaction analysis: {len(trans_stream.data_dic)} operations, net flow: {trans_stream.flow} units\n"
+            format = f"Transaction analysis: {len(trans_stream.data_dic)} "
+            format += f"operations, net flow: {trans_stream.flow} units\n"
+            return format
 
     def filter_data(self, data_batch: List[Any], criteria: Optional[str] = None) -> List[Any]:
         try:
@@ -69,7 +82,7 @@ class TransactionStream(DataStream):
                 raise Exception
             for val in data_batch:
                 tmp = val.split(":")
-                if tmp[0] not in ['buy', 'sell']:
+                if tmp[0] not in criteria:
                     raise Exception
                 self.data_dic[tmp[0]] = float(tmp[1])
                 if tmp[0] == 'buy':
@@ -78,7 +91,7 @@ class TransactionStream(DataStream):
                     self.flow -= float(tmp[1])
                 if float(tmp[1]) > 125:
                     self.large_transaction += 1
-            return [self.dic]
+            return [self.data_dic]
         except Exception:
             return []
 
@@ -92,19 +105,20 @@ class EventStream(DataStream):
         super().__init__(stream_id, "System Events")
         self.total_events = 0
         self.total_err = 0
-    
+
     def process_batch(self, data_batch: List[Any]) -> str:
-        if len(self.filter_data(data_batch)) < 1:
+        if len(self.filter_data(data_batch, ['login', 'error', 'logout'])) < 1: # list should anoly an str! fix this !
             return "corrupted data!\n"
         else:
-            return f"Event analysis: {self.total_events} events, {self.total_err} error detected\n"
+            format = f"Event analysis: {self.total_events} events, "
+            return format + f"{self.total_err} error detected\n"
 
     def filter_data(self, data_batch: List[Any], criteria: Optional[str] = None) -> List[Any]:
         try:
             if not isinstance(data_batch, list):
                 raise Exception
             for d in data_batch:
-                if d not in ['login', 'error', 'logout']:
+                if d not in criteria:
                     raise Exception
                 if d in ['error']:
                     self.total_err += 1
@@ -116,7 +130,8 @@ class EventStream(DataStream):
 
     def get_stats(self) -> Dict[str, Union[str, int, float]]:
         print(f"- Sensor data: {self.total_events} readings processed")
-        return {'total_events': self.total_events, 'total_events': self.total_err}
+        return {'total_events': self.total_events,
+                'total_errors': self.total_err}
 
 
 if __name__ == '__main__':
@@ -144,15 +159,17 @@ if __name__ == '__main__':
     events_lst = ['login', 'error', 'logout']
     print(f"Processing event batch: {events_lst}")
     print(event_stream.process_batch(events_lst))
-    
+
     print("=== Polymorphic Stream Processing ===")
     print("Processing mixed stream types through unified interface...\n")
     print("Batch 1 Results:")
     all_in = [sensor_stream, trans_stream, event_stream]
-    for l in all_in:
-        l.get_stats()            
+    for lst in all_in:
+        lst.get_stats()
     print()
 
     print("Stream filtering active: High-priority data only")
-    print(f"Filtered results: {all_in[0].alerts} critical sensor alerts, {all_in[1].large_transaction} large transaction")
+    print(f"Filtered results: {all_in[0].alerts} ", end='')
+    print(f"critical sensor alerts, {all_in[1].large_transaction} ", end='')
+    print("large transaction")
     print("\nAll streams processed successfully. Nexus throughput optimal.")

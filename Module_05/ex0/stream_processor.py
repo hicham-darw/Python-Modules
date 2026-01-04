@@ -24,7 +24,7 @@ class NumericProcessor(DataProcessor):
         self.average = 0
         self.size = 0
 
-    def process(self, data: int) -> str:
+    def process(self, data: Any) -> str:
         try:
             if not self.validate(data):
                 err = "Output: invalid data! must be a list of numbers"
@@ -36,8 +36,11 @@ class NumericProcessor(DataProcessor):
                 print(format)
         except Exception as e:
             print(e)
+            return(e)
+        else:
+            return format
 
-    def validate(self, data: int) -> bool:
+    def validate(self, data: Any) -> bool:
         if not isinstance(data, list):
             return False
         try:
@@ -49,7 +52,7 @@ class NumericProcessor(DataProcessor):
             return False
         return True
 
-    def format_output(self, format) -> str:
+    def format_output(self, format: str) -> str:
         if not self.validate(format):
             return ("Invalid data!, must be a string")
         else:
@@ -81,6 +84,9 @@ class TextProcessor(DataProcessor):
                 print(format)
         except Exception as e:
             print(e)
+            return (e)
+        else:
+            return format
 
     def validate(self, data: str) -> bool:
         if not isinstance(data, str):
@@ -112,6 +118,9 @@ class LogProcessor(DataProcessor):
                 print("Connection timeout")
         except Exception as e:
             print(e)
+            return e
+        else:
+            return None
 
     def validate(self, data: Any) -> bool:
         if not isinstance(data, str):
