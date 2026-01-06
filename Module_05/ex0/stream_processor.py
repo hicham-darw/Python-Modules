@@ -36,7 +36,7 @@ class NumericProcessor(DataProcessor):
                 print(format)
         except Exception as e:
             print(e)
-            return(e)
+            return e
         else:
             return format
 

@@ -540,28 +540,28 @@ def main() -> None:
             sys.exit(1)
 
     # Verify exercise directories exist
-    # ex0_dir = Path("ex0")
-    # ex1_dir = Path("ex1")
-    # ex2_dir = Path("ex2")
+    ex0_dir = Path("ex0")
+    ex1_dir = Path("ex1")
+    ex2_dir = Path("ex2")
 
-    # missing_dirs = []
-    # if not ex0_dir.exists():
-    #     missing_dirs.append("ex0/")
-    # if not ex1_dir.exists():
-    #     missing_dirs.append("ex1/")
-    # if not ex2_dir.exists():
-    #     missing_dirs.append("ex2/")
+    missing_dirs = []
+    if not ex0_dir.exists():
+        missing_dirs.append("ex0/")
+    if not ex1_dir.exists():
+        missing_dirs.append("ex1/")
+    if not ex2_dir.exists():
+        missing_dirs.append("ex2/")
 
     # if missing_dirs:
     #     print("❌ Exercise directories not found!")
     #     print(f"Missing: {', '.join(missing_dirs)}")
     #     print("Please ensure your exercise files are in "
     #           "ex0/, ex1/, and ex2/ directories")
-    #     print("\n def load_moduUse --help for more information")
+    #     print("\nUse --help for more information")
     #     sys.exit(1)
 
     tester = PolymorphismTester()
-    success = tester._test_exercise_0()
+    success = tester._test_exercise_1()
 
     # Exit with appropriate code
     sys.exit(0 if success else 1)
