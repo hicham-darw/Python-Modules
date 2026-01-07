@@ -552,16 +552,16 @@ def main() -> None:
     if not ex2_dir.exists():
         missing_dirs.append("ex2/")
 
-    # if missing_dirs:
-    #     print("❌ Exercise directories not found!")
-    #     print(f"Missing: {', '.join(missing_dirs)}")
-    #     print("Please ensure your exercise files are in "
-    #           "ex0/, ex1/, and ex2/ directories")
-    #     print("\nUse --help for more information")
-    #     sys.exit(1)
+    if missing_dirs:
+        print("❌ Exercise directories not found!")
+        print(f"Missing: {', '.join(missing_dirs)}")
+        print("Please ensure your exercise files are in "
+              "ex0/, ex1/, and ex2/ directories")
+        print("\nUse --help for more information")
+        sys.exit(1)
 
     tester = PolymorphismTester()
-    success = tester._test_exercise_2()
+    success = tester.run_all_tests(verbose=verbose)
 
     # Exit with appropriate code
     sys.exit(0 if success else 1)
