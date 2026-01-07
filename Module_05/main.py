@@ -561,7 +561,7 @@ def main() -> None:
     #     sys.exit(1)
 
     tester = PolymorphismTester()
-    success = tester._test_exercise_1()
+    success = tester._test_exercise_2()
 
     # Exit with appropriate code
     sys.exit(0 if success else 1)
