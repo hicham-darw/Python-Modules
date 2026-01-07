@@ -86,14 +86,14 @@ class NexusManager:
     def add_pipeline(self, pipeline: ProcessingPipeline) -> None:
         self.pipelines.append(pipeline)
 
-    def chain_pipelines(self) -> None:
+    def pipeline_chaining(self) -> None:
         print("=== Pipeline Chaining Demo ===")
         print("Pipeline A -> Pipeline B -> Pipeline C")
         print("Data flow: Raw -> Processed -> Analyzed -> Stored")
         print("Chain result: 100 records processed through 3-stage pipeline")
         print("Performance: 95% efficiency, 0.2s total processing time")
 
-    def error_recovery(self) -> None:
+    def error_recovery_test(self) -> None:
         print("=== Error Recovery Test ===")
         print("Simulating pipeline failure...")
         try:
@@ -128,9 +128,9 @@ if __name__ == "__main__":
     stream_pipeline.process("Real-time sensor stream")
     print()
 
-    manager.chain_pipelines()
+    manager.pipeline_chaining()
     print()
-    manager.error_recovery()
+    manager.error_recovery_test()
     print()
 
     print("Nexus Integration complete. All systems operational.")
