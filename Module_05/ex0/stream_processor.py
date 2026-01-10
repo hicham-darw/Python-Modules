@@ -135,7 +135,7 @@ class LogProcessor(DataProcessor):
 
 
 if __name__ == '__main__':
-    # Numeric Processor
+#   Numeric Processor -------------------------------------->
     print("=== CODE NEXUS - DATA PROCESSOR FOUNDATION ===\n")
     print("Initializing Numeric Processor...")
     lst = [1, 2, 3, 4, 5]
@@ -145,7 +145,7 @@ if __name__ == '__main__':
     proc.process(lst)
     print()
 
-    # text Processor
+#   text Processor -------------------------------->
     print("Initializing Text Processor...")
     print("Processing data: \"Hello Nexus World\"")
     text = "Hello Nexus World"
@@ -154,7 +154,7 @@ if __name__ == '__main__':
     proc.process(text)
     print()
 
-    # Log Processor
+#   Log Processor --------------------------->
     print("Initializing Log Processor...")
     text = "\"ERROR: Connection timeout\""
     print(f"Processing data: {text}")

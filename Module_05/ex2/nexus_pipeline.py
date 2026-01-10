@@ -2,20 +2,25 @@ from abc import ABC, abstractmethod
 from typing import Any, List, Protocol
 
 
-#   Stage Protocol ------------------------------>
+#   Stage Protocol modular component ------------------------------>
 class ProcessingStage(Protocol):
+    """ modular component provide specific behavior"""
     def process(self, data: Any) -> Any:
         pass
 
 
-#   Base Pipeline ---------------------------->
+#   processing pipeline the orchestrator---------------------------->
 class ProcessingPipeline(ABC):
+    """class defines the contract for all pipelines"""
     def __init__(self) -> None:
         self.stages: List[ProcessingStage] = []
 
     @abstractmethod
     def process(self, data: Any) -> Any:
         pass
+
+    def add_stage(self, stage: ProcessingStage) -> None:
+        self.stages.append(stage)
 
 
 #   Stages -------------------------------------->
@@ -46,7 +51,11 @@ class JSONAdapter(ProcessingPipeline):
         print("Processing JSON data through pipeline...")
         self.stages[0].process(data)
         print("Transform: Enriched with metadata and validation")
-        print("Output: Processed temperature reading: 23.5°C (Normal range)")
+        try:
+            print(f"Output: Processed temperature reading: {data['value']}°{data['unit']} (Normal range)")
+        except Exception:
+            print(f"Output: No temperature reading from data")
+
         return data
 
 
@@ -58,9 +67,17 @@ class CSVAdapter(ProcessingPipeline):
 
     def process(self, data: Any) -> Any:
         print("Processing CSV data through same pipeline...")
-        self.stages[0].process(f"\"{data}\"")
+        self.stages[0].process("\"" + data + "\"")
         print("Transform: Parsed and structured data")
-        print("Output: User activity logged: 1 actions processed")
+        try:
+            count = 0
+            splitted = data.split(',')
+            for sp in splitted:
+                if sp == 'action':
+                    count += 1
+            print(f"Output: User activity logged: {count} actions processed")
+        except Exception:
+            print("Error: cannot process data")
         return data
 
 
@@ -80,6 +97,7 @@ class StreamAdapter(ProcessingPipeline):
 
 #   Nexus Manager --------------------------------------------------->
 class NexusManager:
+    """orchestrate  multiple pipelines without knowing them <Manager>"""
     def __init__(self) -> None:
         self.pipelines: List[ProcessingPipeline] = []
 
@@ -121,11 +139,17 @@ if __name__ == "__main__":
     stream_pipeline = StreamAdapter("STREAM")
 
     print("=== Multi-Format Data Processing ===\n")
-    json_pipeline.process({"sensor": "temp", "value": 23.5, "unit": "C"})
+
+    json_data = {"sensor": "temp", "value": 23.5, "unit": "C"}
+    json_pipeline.process(json_data)
     print()
-    csv_pipeline.process("user,action,timestamp")
+
+    csv_data = "user,action,timestamp"
+    csv_pipeline.process(csv_data)
     print()
-    stream_pipeline.process("Real-time sensor stream")
+
+    stream_data = "Real-time sensor stream"
+    stream_pipeline.process(stream_data)
     print()
 
     manager.pipeline_chaining()
