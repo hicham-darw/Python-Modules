@@ -48,9 +48,9 @@ class NumericProcessor(DataProcessor):
                 int(elem)
                 self.total_numbers += elem
                 self.size += 1
+            return True
         except Exception:
             return False
-        return True
 
     def format_output(self, format: str) -> str:
         if not self.validate(format):

@@ -212,7 +212,7 @@ if __name__ == '__main__':
     sensor_id = 'SENSOR_001'
     sensor_stream = SensorStream(sensor_id)
     print(f"Stream ID: {sensor_stream.stream_id}, ", end='')
-    print(" Type: {sensor_stream.type_stream}")
+    print(f" Type: {sensor_stream.type_stream}")
     sensor_data = ['temp:22.5', 'humidity:65', 'pressure:1013']
     print(f"Processing sensor batch: {sensor_data}")
     print(sensor_stream.process_batch(sensor_data))
